@@ -1,0 +1,162 @@
+// Christina's Hair Salon: small enhancements only. The page works without JS.
+(function () {
+  // Mobile menu
+  var toggle = document.querySelector('[data-nav-toggle]');
+  var nav = document.querySelector('[data-nav]');
+  if (toggle && nav) {
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+
+  // Header border once the page scrolls
+  var header = document.querySelector('[data-header]');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Today's hours, in salon time (Pacific)
+  var hours = {
+    0: [10.5, 17.5], 1: [10.5, 17.5], 2: [10.5, 17.5], 3: [10.5, 17.5], 4: [10.5, 17.5],
+    5: [10, 18], 6: [10, 18]
+  };
+  var labels = { 10: '10 AM', 10.5: '10:30 AM', 17.5: '5:30 PM', 18: '6 PM' };
+  var now;
+  try {
+    now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  } catch (e) {
+    now = new Date();
+  }
+  var day = now.getDay();
+  var row = document.querySelector('.hours tr[data-days="' + day + '"]');
+  if (row) row.classList.add('is-today');
+
+  var todayEl = document.querySelector('[data-today-hours]');
+  if (todayEl) {
+    var h = now.getHours() + now.getMinutes() / 60;
+    var open = hours[day];
+    if (h >= open[0] && h < open[1]) {
+      todayEl.textContent = 'Open now until ' + labels[open[1]] + ', walk-ins welcome';
+    } else if (h < open[0]) {
+      todayEl.textContent = 'Opens today at ' + labels[open[0]] + ', walk-ins welcome';
+    } else {
+      todayEl.textContent = 'Closed now. Walk-ins welcome during open hours';
+    }
+  }
+
+  // Before & after slider
+  document.querySelectorAll('[data-compare]').forEach(function (fig) {
+    var range = fig.querySelector('[data-compare-range]');
+    if (!range) return;
+    var update = function () { fig.style.setProperty('--pos', range.value + '%'); };
+    range.addEventListener('input', update);
+    update();
+  });
+
+  // Scroll reveals, with a small stagger for items in the same row
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    revealEls.forEach(function (el) {
+      var siblings = el.parentElement ? el.parentElement.querySelectorAll(':scope > [data-reveal]') : [];
+      var i = Array.prototype.indexOf.call(siblings, el);
+      if (i > 0) el.style.setProperty('--delay', (i * 0.12) + 's');
+    });
+    var revealIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealIo.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    revealEls.forEach(function (el) { revealIo.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // Count-up numbers
+  var counters = document.querySelectorAll('[data-count]');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var countIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target, end = +el.getAttribute('data-count'), start = null;
+        countIo.unobserve(el);
+        var step = function (t) {
+          if (start === null) start = t;
+          var p = Math.min((t - start) / 1200, 1);
+          el.textContent = String(Math.round(end * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        el.textContent = '0';
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (el) { countIo.observe(el); });
+  }
+
+  // Pause looping animations when they're offscreen or the tab is hidden
+  var loops = document.querySelectorAll('[data-loop]');
+  if ('IntersectionObserver' in window) {
+    var loopIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { entry.target.classList.toggle('is-paused', !entry.isIntersecting); });
+    });
+    loops.forEach(function (el) { loopIo.observe(el); });
+  }
+  document.addEventListener('visibilitychange', function () {
+    document.documentElement.classList.toggle('is-hidden', document.hidden);
+  });
+
+  var year = document.querySelector('[data-year]');
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  // Request form: design only until it's connected to a form service (e.g. Formspree)
+  var form = document.querySelector('[data-request-form]');
+  if (form) {
+    var status = form.querySelector('[data-form-status]');
+    var checks = [
+      { input: form.querySelector('#name'), valid: function (v) { return v.trim().length > 0; } },
+      { input: form.querySelector('#phone'), valid: function (v) { return v.replace(/\D/g, '').length >= 10; } }
+    ];
+
+    function validate(check) {
+      var ok = check.valid(check.input.value);
+      var err = document.getElementById(check.input.getAttribute('aria-describedby'));
+      check.input.setAttribute('aria-invalid', String(!ok));
+      if (err) err.hidden = ok;
+      return ok;
+    }
+
+    checks.forEach(function (c) {
+      c.input.addEventListener('blur', function () { if (c.input.value) validate(c); });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var firstBad = null;
+      checks.forEach(function (c) { if (!validate(c) && !firstBad) firstBad = c.input; });
+      if (firstBad) {
+        status.textContent = '';
+        firstBad.focus();
+        return;
+      }
+      status.textContent = 'Preview only: this form isn’t connected yet. Please call (408) 907-6648 to book.';
+    });
+  }
+})();
