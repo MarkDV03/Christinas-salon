@@ -132,6 +132,13 @@ figure { margin: 0; }
   border-top: 1.5px solid currentColor;
 }
 .brand--footer { color: var(--red-bright); margin: 0 0 .5rem; }
+.brand--header { grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: .6rem; align-items: center; }
+.brand--header .love--header { grid-row: 1 / 3; width: 84px; height: 60px; }
+.brand--header .brand__name, .brand--header .brand__sub { grid-column: 2; }
+@media (max-width: 420px) {
+  .brand--header .love--header { width: 64px; height: 46px; }
+  .brand--header .brand__name { font-size: 1.7rem; }
+}
 .brand--footer .brand__name { font-size: 2.6rem; }
 
 .nav-toggle {
