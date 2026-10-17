@@ -159,4 +159,20 @@
       status.textContent = 'Preview only: this form isn’t connected yet. Please call (408) 907-6648 to book.';
     });
   }
+
+  // Draw the heart around the "Love is in the Hair!" logo when it scrolls into view
+  var loves = document.querySelectorAll('.love');
+  if (loves.length) {
+    var instant = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window);
+    if (instant) {
+      loves.forEach(function (l) { l.classList.add('is-drawn'); });
+    } else {
+      var loveObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('is-drawn'); loveObs.unobserve(en.target); }
+        });
+      }, { threshold: 0.4 });
+      loves.forEach(function (l) { loveObs.observe(l); });
+    }
+  }
 })();
