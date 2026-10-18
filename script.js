@@ -59,20 +59,25 @@
     }
   }
 
-  // Before & after sliders, linked so moving one moves them all
-  var compares = Array.prototype.slice.call(document.querySelectorAll('[data-compare]'));
-  var setCompare = function (value) {
-    compares.forEach(function (fig) {
-      var range = fig.querySelector('[data-compare-range]');
-      if (range) range.value = value;
-      fig.style.setProperty('--pos', value + '%');
-    });
-  };
-  compares.forEach(function (fig) {
-    var range = fig.querySelector('[data-compare-range]');
-    if (range) range.addEventListener('input', function () { setCompare(range.value); });
-  });
-  setCompare(50);
+  // Before & after: one slider above the photos moves every pair
+  var compareRange = document.querySelector('[data-compare-range]');
+  if (compareRange) {
+    var compares = document.querySelectorAll('[data-compare]');
+    var header = document.querySelector('.site-header');
+    var setCompare = function () {
+      // Toward "Before" shows more of the before photo, toward "After" more of the after
+      var pos = (100 - compareRange.value) + '%';
+      compareRange.style.setProperty('--fill', compareRange.value + '%');
+      compares.forEach(function (fig) { fig.style.setProperty('--pos', pos); });
+    };
+    var setHeaderH = function () {
+      if (header) document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+    };
+    compareRange.addEventListener('input', setCompare);
+    window.addEventListener('resize', setHeaderH);
+    setHeaderH();
+    setCompare();
+  }
 
   // Scroll reveals, with a small stagger for items in the same row
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
