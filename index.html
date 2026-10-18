@@ -48,7 +48,7 @@
         <ul>
           <li><a href="#services">Services &amp; prices</a></li>
           <li><a href="#specialty">Rebonding &amp; keratin</a></li>
-          <li><a href="#clients">Our clients</a></li>
+          <li><a href="#work">Our work</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#team">Our team</a></li>
           <li><a href="#visit">Hours &amp; location</a></li>
@@ -62,7 +62,7 @@
     <!-- Hero: modeled on the salon's wall sign -->
     <section class="hero" id="top" data-loop>
       <figure class="hero__photo">
-        <img src="assets/img/long-glossy-hair.webp" width="1200" height="1500" alt="Long, glossy dark hair falling in soft waves down a woman's back." fetchpriority="high">
+        <img src="assets/img/hero-copper-hair.webp" width="1090" height="1453" alt="Glossy copper-red hair with soft highlights, freshly colored at Christina's." fetchpriority="high">
       </figure>
       <div class="hero__copy">
         <p class="hero__brand"><span class="hero__script">Christina's</span> <span class="hero__brand-sub">Hair Salon</span></p>
@@ -199,6 +199,84 @@
       </div>
     </section>
 
+    <!-- Our work gallery -->
+    <section class="section work" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-head section-head--center" data-reveal>
+          <p class="eyebrow">Our work</p>
+          <h2 id="work-title">Fresh looks from our chairs</h2>
+          <p>Color, curls, cuts and styles from real clients at Christina's. Tap a photo to see it bigger.</p>
+        </div>
+        <ul class="work__grid">
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-2.webp" aria-label="View larger: Soft curls with caramel balayage">
+              <img src="assets/img/work-2.webp" width="720" height="960" loading="lazy" alt="Long dark hair styled in soft, bouncy curls with caramel balayage.">
+              <span class="work__cap">Soft curls with caramel balayage</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-7.webp" aria-label="View larger: Copper red color">
+              <img src="assets/img/work-7.webp" width="750" height="1000" loading="lazy" alt="Shoulder-length hair colored a vivid copper red.">
+              <span class="work__cap">Copper red color</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-1.webp" aria-label="View larger: Blonde balayage blowout">
+              <img src="assets/img/work-1.webp" width="720" height="960" loading="lazy" alt="Straight, layered hair with a blonde balayage, blown out smooth.">
+              <span class="work__cap">Blonde balayage blowout</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-6.webp" aria-label="View larger: Short bob with highlights">
+              <img src="assets/img/work-6.webp" width="720" height="960" loading="lazy" alt="A sharp, stacked short bob with warm highlights.">
+              <span class="work__cap">Short bob with highlights</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-bixie-cut.webp" aria-label="View larger: Bixie cut">
+              <img src="assets/img/work-bixie-cut.webp" width="800" height="770" loading="lazy" alt="The owner with a layered bixie cut and dimensional highlights.">
+              <span class="work__cap">Bixie cut</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-4.webp" aria-label="View larger: Long layers with balayage">
+              <img src="assets/img/work-4.webp" width="751" height="1000" loading="lazy" alt="Long, face-framing layers with a soft blonde balayage.">
+              <span class="work__cap">Long layers with balayage</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-3.webp" aria-label="View larger: Bouncy curls">
+              <img src="assets/img/work-3.webp" width="720" height="960" loading="lazy" alt="Long hair in bouncy curls with golden balayage, being finished by a stylist.">
+              <span class="work__cap">Bouncy curls</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-5.webp" aria-label="View larger: Red streaks">
+              <img src="assets/img/work-5.webp" width="720" height="960" loading="lazy" alt="Long dark hair with bright red peekaboo streaks.">
+              <span class="work__cap">Red streaks</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-8.webp" aria-label="View larger: Cut & style for every age">
+              <img src="assets/img/work-8.webp" width="750" height="1000" loading="lazy" alt="A stylist with a smiling senior client after her cut and curl.">
+              <span class="work__cap">Cut & style for every age</span>
+            </button>
+          </li>
+          <li class="work__item" data-reveal>
+            <button class="work__btn" type="button" data-full="assets/img/work-9.webp" aria-label="View larger: Boys' haircuts">
+              <img src="assets/img/work-9.webp" width="720" height="960" loading="lazy" alt="A smiling boy in a dinosaur cape after a fresh fade.">
+              <span class="work__cap">Boys' haircuts</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <dialog class="lightbox" data-lightbox aria-label="Photo viewer">
+        <img src="" alt="" data-lightbox-img>
+        <p class="lightbox__cap" data-lightbox-cap></p>
+        <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close">&times;</button>
+      </dialog>
+    </section>
+
     <!-- Client photo wall -->
     <section class="section clients" id="clients" aria-labelledby="clients-title">
       <div class="container">
@@ -255,12 +333,11 @@
         </div>
         <ul class="team__grid">
           <li class="person" data-reveal>
-            <div class="person__photo person__photo--soon" role="img" aria-label="Photo coming soon">
-              <svg class="love" aria-hidden="true"><use href="#love-logo"/></svg>
+            <div class="person__photo">
+              <img src="assets/img/owner-portrait.webp" width="632" height="760" loading="lazy" alt="The salon's owner, smiling in sunglasses and a black turtleneck, with a chic bob cut.">
             </div>
             <h3 class="person__name">Owner</h3>
             <p class="person__role">Owner &amp; stylist</p>
-            <p class="person__note">Photo coming soon</p>
           </li>
           <li class="person" data-reveal>
             <div class="person__photo">
