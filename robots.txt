@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://markdv03.github.io/Christinas-salon/sitemap.xml
