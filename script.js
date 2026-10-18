@@ -169,10 +169,11 @@
     } else {
       var loveObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add('is-drawn'); loveObs.unobserve(en.target); }
+          if (en.isIntersecting) { en.target._love.classList.add('is-drawn'); loveObs.unobserve(en.target); }
         });
-      }, { threshold: 0.4 });
-      loves.forEach(function (l) { loveObs.observe(l); });
+      }, { threshold: 0.2 });
+      // Watch the logo's parent: the hidden (clipped) logo itself never counts as visible
+      loves.forEach(function (l) { l.parentElement._love = l; loveObs.observe(l.parentElement); });
     }
   }
 })();

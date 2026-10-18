@@ -172,19 +172,12 @@ figure { margin: 0; }
 .site-nav .btn { width: 100%; }
 
 /* "Love is in the Hair!" logo: the heart draws itself in */
-.love { display: block; color: var(--red); overflow: visible; --draw: 0; }
-.love-word { font-family: var(--font-love); font-size: 176px; fill: currentColor; }
-.love-word--hair { font-size: 224px; }
-.love-small { font-family: var(--font-love); font-size: 60px; fill: currentColor; }
-.love-heart {
-  stroke-dasharray: 1; stroke-dashoffset: var(--draw);
-  transition: stroke-dashoffset 2.2s cubic-bezier(.6, .1, .2, 1) .3s;
-}
-.js .love { --draw: 1; }
-.js .love.is-drawn { --draw: 0; }
-.love--hero { width: min(13rem, 55%); height: auto; aspect-ratio: 840 / 830; color: var(--red-bright); margin: 1.25rem 0 .5rem; }
-.love--about { width: min(12rem, 60%); aspect-ratio: 840 / 830; margin-bottom: 1.25rem; }
-.love--footer { width: 8rem; aspect-ratio: 840 / 830; color: var(--red-bright); margin-top: 1rem; }
+.love { display: block; color: var(--red); overflow: visible; }
+.js .love { clip-path: inset(0 100% 0 0); transition: clip-path 1.6s cubic-bezier(.6,.1,.2,1) .2s; }
+.js .love.is-drawn, .person__photo--soon .love { clip-path: none; }
+.love--hero { width: min(13rem, 55%); height: auto; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin: 1.25rem 0 .5rem; }
+.love--about { width: min(12rem, 60%); aspect-ratio: 1036 / 1034; margin-bottom: 1.25rem; }
+.love--footer { width: 8rem; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin-top: 1rem; }
 
 /* Hero: dark like the wall sign */
 .hero {
@@ -506,8 +499,7 @@ figure { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ribbon__track, .wall__heart { animation: none !important; }
-  .js .love { --draw: 0; }
-  .love-heart { transition: none; }
+  .js .love { clip-path: none; }
   .js [data-reveal] { opacity: 1; transform: none; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
@@ -526,7 +518,7 @@ figure { margin: 0; }
   display: grid; place-items: center;
   background: radial-gradient(90% 70% at 50% 30%, var(--red), var(--red-deep));
 }
-.person__photo--soon .love { width: 58%; aspect-ratio: 840 / 830; color: rgba(255, 255, 255, .9); --draw: 0; }
+.person__photo--soon .love { width: 58%; aspect-ratio: 1036 / 1034; color: rgba(255, 255, 255, .9); }
 .person__name { margin-top: 1rem; font-size: 1.35rem; }
 .person__role { color: var(--red); font-weight: 600; margin-top: .2rem; }
 .person__note { color: var(--muted); font-size: .9rem; margin-top: .15rem; }
