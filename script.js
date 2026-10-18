@@ -181,13 +181,11 @@
   var box = document.querySelector('[data-lightbox]');
   if (box && typeof box.showModal === 'function') {
     var boxImg = box.querySelector('[data-lightbox-img]');
-    var boxCap = box.querySelector('[data-lightbox-cap]');
     document.querySelectorAll('.work__btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var img = btn.querySelector('img');
         boxImg.src = btn.getAttribute('data-full');
         boxImg.alt = img.alt;
-        boxCap.textContent = btn.querySelector('.work__cap').textContent;
         box.showModal();
       });
     });
