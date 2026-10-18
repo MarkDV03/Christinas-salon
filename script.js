@@ -171,13 +171,20 @@
     });
   }
 
-  // Draw the heart around the "Love is in the Hair!" logo when it scrolls into view
+  // "Love is in the Hair!" logos: the heart draws itself in. Every logo moves together, led by the header:
+  // they redraw as each new section scrolls into view (bottom to top when scrolling up),
+  // when the header logo is hovered, and every 7 seconds when idle
   var loves = document.querySelectorAll('.love');
   if (loves.length) {
     var instant = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window);
     if (instant) {
       loves.forEach(function (l) { l.classList.add('is-drawn'); });
     } else {
+      // Two frames so the first draw-in transition plays
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        loves.forEach(function (l) { l.classList.add('is-drawn'); });
+      }); });
+
       // up: draw the heart backwards, from the bottom tip to the top
       var redraw = function (l, up) {
         if (l.classList.contains('is-replay')) return;
@@ -191,42 +198,25 @@
         });
       });
 
-      // Logos in the page draw in once, when they first scroll into view
-      var loveObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target._love.classList.add('is-drawn'); loveObs.unobserve(en.target); }
-        });
-      }, { threshold: 0.2 });
-      // Watch the logo's parent: the hidden (clipped) logo itself never counts as visible
-      loves.forEach(function (l) {
-        if (l.classList.contains('love--header')) return;
-        l.parentElement._love = l; loveObs.observe(l.parentElement);
-      });
-
-      // Header logo: redraws as each new section scrolls into view (bottom to top when scrolling up),
-      // on hover, and every 7 seconds when idle
+      var lastDraw = Date.now();
+      var lastY = window.scrollY, goingUp = false;
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY;
+        if (y !== lastY) goingUp = y < lastY;
+        lastY = y;
+      }, { passive: true });
+      var replay = function (up) {
+        if (document.hidden || Date.now() - lastDraw < 1800) return;
+        lastDraw = Date.now();
+        loves.forEach(function (l) { redraw(l, up === true); });
+      };
+      var sectionObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting && (goingUp || window.scrollY > 50)) replay(goingUp); });
+      }, { rootMargin: '-45% 0px -45% 0px' });
+      document.querySelectorAll('main > section').forEach(function (s) { sectionObs.observe(s); });
       var headerLove = document.querySelector('.love--header');
-      if (headerLove) {
-        requestAnimationFrame(function () { requestAnimationFrame(function () { headerLove.classList.add('is-drawn'); }); });
-        var lastDraw = Date.now();
-        var lastY = window.scrollY, goingUp = false;
-        window.addEventListener('scroll', function () {
-          var y = window.scrollY;
-          if (y !== lastY) goingUp = y < lastY;
-          lastY = y;
-        }, { passive: true });
-        var replay = function (up) {
-          if (document.hidden || Date.now() - lastDraw < 1800) return;
-          lastDraw = Date.now();
-          redraw(headerLove, up === true);
-        };
-        var sectionObs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) { if (en.isIntersecting && (goingUp || window.scrollY > 50)) replay(goingUp); });
-        }, { rootMargin: '-45% 0px -45% 0px' });
-        document.querySelectorAll('main > section').forEach(function (s) { sectionObs.observe(s); });
-        headerLove.parentElement.addEventListener('mouseenter', function () { replay(); });
-        setInterval(function () { if (Date.now() - lastDraw > 6500) replay(); }, 1000);
-      }
+      if (headerLove) headerLove.parentElement.addEventListener('mouseenter', function () { replay(); });
+      setInterval(function () { if (Date.now() - lastDraw > 6500) replay(); }, 1000);
     }
   }
 

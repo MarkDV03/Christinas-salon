@@ -179,8 +179,8 @@ figure { margin: 0; }
 .js .love .love__pen { stroke-dashoffset: 1; }
 .js .love .love__pen--a { transition: stroke-dashoffset .6s cubic-bezier(.5,0,.5,1) .2s; }
 .js .love .love__pen--b { transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.3,1) .7s; }
-.js .love.is-drawn .love__pen, .person__photo--soon .love .love__pen { stroke-dashoffset: 0; }
-/* Header logo redraws its heart as you scroll into each section */
+.js .love.is-drawn .love__pen { stroke-dashoffset: 0; }
+/* All logos redraw their heart together as you scroll into each section */
 .js .love.is-replay .love__pen--a { animation: love-pen .6s cubic-bezier(.5,0,.5,1) both; }
 .js .love.is-replay .love__pen--b { animation: love-pen 1.4s cubic-bezier(.4,0,.3,1) .5s both; }
 @keyframes love-pen { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
@@ -251,6 +251,7 @@ figure { margin: 0; }
 .ribbon i { font-style: normal; color: var(--red-bright); font-size: 1.4rem; }
 @keyframes ribbon { to { transform: translateX(-50%); } }
 .is-paused, .is-paused *, .is-paused::before, .is-paused::after { animation-play-state: paused !important; }
+.is-paused .love * { animation-play-state: running !important; } /* logos stay in sync with the header */
 
 /* Sections */
 .section { padding-block: var(--section); }
