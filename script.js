@@ -178,24 +178,44 @@
     if (instant) {
       loves.forEach(function (l) { l.classList.add('is-drawn'); });
     } else {
+      var redraw = function (l) {
+        if (l.classList.contains('is-replay')) return;
+        l.classList.add('is-replay');
+      };
+      loves.forEach(function (l) {
+        l.addEventListener('animationend', function () { l.classList.remove('is-replay'); });
+      });
+
+      // Logos in the page draw in when they scroll into view, and again every time they come back
       var loveObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target._love.classList.add('is-drawn'); loveObs.unobserve(en.target); }
+          var l = en.target._love;
+          if (!en.isIntersecting) return;
+          if (l.classList.contains('is-drawn')) redraw(l); else l.classList.add('is-drawn');
         });
       }, { threshold: 0.2 });
       // Watch the logo's parent: the hidden (clipped) logo itself never counts as visible
-      loves.forEach(function (l) { l.parentElement._love = l; loveObs.observe(l.parentElement); });
+      loves.forEach(function (l) {
+        if (l.classList.contains('love--header')) return;
+        l.parentElement._love = l; loveObs.observe(l.parentElement);
+      });
 
-      // Replay the header logo every 7 seconds and whenever the brand is hovered
+      // Header logo: redraws as each new section scrolls into view, on hover, and every 7 seconds when idle
       var headerLove = document.querySelector('.love--header');
       if (headerLove) {
+        requestAnimationFrame(function () { requestAnimationFrame(function () { headerLove.classList.add('is-drawn'); }); });
+        var lastDraw = Date.now();
         var replay = function () {
-          if (document.hidden || headerLove.classList.contains('is-replay')) return;
-          headerLove.classList.add('is-replay');
+          if (document.hidden || Date.now() - lastDraw < 1800) return;
+          lastDraw = Date.now();
+          redraw(headerLove);
         };
-        headerLove.addEventListener('animationend', function () { headerLove.classList.remove('is-replay'); });
+        var sectionObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting && window.scrollY > 50) replay(); });
+        }, { rootMargin: '-45% 0px -45% 0px' });
+        document.querySelectorAll('main > section').forEach(function (s) { sectionObs.observe(s); });
         headerLove.parentElement.addEventListener('mouseenter', replay);
-        setInterval(replay, 7000);
+        setInterval(function () { if (Date.now() - lastDraw > 6500) replay(); }, 1000);
       }
     }
   }
