@@ -402,12 +402,6 @@ figure { margin: 0; }
   .team__grid { grid-template-columns: repeat(4, 1fr); gap: 1.75rem; }
 }
 
-/* Share band */
-.share { background: var(--red); color: var(--white); padding-block: 3rem; }
-.share__inner { display: grid; gap: 1.5rem; }
-.share h2 { font-family: var(--font-love); text-transform: none; font-weight: 400; font-size: clamp(2.5rem, 8vw, 3.6rem); line-height: 1.1; }
-.share p { margin-top: .5rem; color: #ffe4e8; overflow-wrap: anywhere; }
-
 /* Visit */
 .visit__grid { display: grid; gap: 2.5rem; }
 .visit__address { font-style: normal; font-family: var(--font-head); font-size: 1.3rem; letter-spacing: .02em; line-height: 1.35; margin-top: 1.25rem; }
@@ -497,7 +491,6 @@ figure { margin: 0; }
   .topbar__inner > :first-child, .topbar__inner > :last-child { display: block; }
 
   .price-cols { grid-template-columns: 1fr 1fr; }
-  .share__inner { grid-template-columns: 1fr auto; align-items: center; }
   .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; }
 }
 
