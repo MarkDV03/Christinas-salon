@@ -185,6 +185,18 @@
       }, { threshold: 0.2 });
       // Watch the logo's parent: the hidden (clipped) logo itself never counts as visible
       loves.forEach(function (l) { l.parentElement._love = l; loveObs.observe(l.parentElement); });
+
+      // Replay the header logo every 7 seconds and whenever the brand is hovered
+      var headerLove = document.querySelector('.love--header');
+      if (headerLove) {
+        var replay = function () {
+          if (document.hidden || headerLove.classList.contains('is-replay')) return;
+          headerLove.classList.add('is-replay');
+        };
+        headerLove.addEventListener('animationend', function () { headerLove.classList.remove('is-replay'); });
+        headerLove.parentElement.addEventListener('mouseenter', replay);
+        setInterval(replay, 7000);
+      }
     }
   }
 

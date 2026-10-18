@@ -176,6 +176,9 @@ figure { margin: 0; }
 .love { display: block; color: var(--red); overflow: visible; }
 .js .love { clip-path: inset(0 100% 0 0); transition: clip-path 1.6s cubic-bezier(.6,.1,.2,1) .2s; }
 .js .love.is-drawn, .person__photo--soon .love { clip-path: none; }
+/* Header logo redraws itself every few seconds and on hover */
+.js .love.is-replay { animation: love-redraw 1.6s cubic-bezier(.6,.1,.2,1); }
+@keyframes love-redraw { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
 .love--hero { width: min(13rem, 55%); height: auto; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin: 1.25rem 0 .5rem; }
 .love--about { width: min(12rem, 60%); aspect-ratio: 1036 / 1034; margin-bottom: 1.25rem; }
 .love--footer { width: 8rem; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin-top: 1rem; }
