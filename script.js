@@ -32,10 +32,10 @@
 
   // Today's hours, in salon time (Pacific)
   var hours = {
-    0: [10.5, 17.5], 1: [10.5, 17.5], 2: [10.5, 17.5], 3: [10.5, 17.5], 4: [10.5, 17.5],
-    5: [10, 18], 6: [10, 18]
+    0: [10.5, 18.5], 1: [10.5, 18.5], 2: [10.5, 18.5], 3: [10.5, 18.5], 4: [10.5, 18.5],
+    5: [10, 18.5], 6: [10, 18.5]
   };
-  var labels = { 10: '10 AM', 10.5: '10:30 AM', 17.5: '5:30 PM', 18: '6 PM' };
+  var labels = { 10: '10 AM', 10.5: '10:30 AM', 18.5: '6:30 PM' };
   var now;
   try {
     now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
