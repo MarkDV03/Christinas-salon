@@ -59,14 +59,20 @@
     }
   }
 
-  // Before & after slider
-  document.querySelectorAll('[data-compare]').forEach(function (fig) {
+  // Before & after sliders, linked so moving one moves them all
+  var compares = Array.prototype.slice.call(document.querySelectorAll('[data-compare]'));
+  var setCompare = function (value) {
+    compares.forEach(function (fig) {
+      var range = fig.querySelector('[data-compare-range]');
+      if (range) range.value = value;
+      fig.style.setProperty('--pos', value + '%');
+    });
+  };
+  compares.forEach(function (fig) {
     var range = fig.querySelector('[data-compare-range]');
-    if (!range) return;
-    var update = function () { fig.style.setProperty('--pos', range.value + '%'); };
-    range.addEventListener('input', update);
-    update();
+    if (range) range.addEventListener('input', function () { setCompare(range.value); });
   });
+  setCompare(50);
 
   // Scroll reveals, with a small stagger for items in the same row
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
