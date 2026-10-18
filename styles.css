@@ -303,10 +303,9 @@ figure { margin: 0; }
 .results .section-head { margin-bottom: 1.75rem; }
 .results__control {
   position: sticky; top: calc(var(--header-h, 72px) + .5rem); z-index: 5;
-  display: flex; align-items: center; gap: .85rem; max-width: 32rem; margin: 0 auto 1.5rem;
+  display: flex; align-items: center; gap: .85rem; max-width: 26rem; margin: 0 auto 1.5rem;
   padding: .7rem 1.1rem; border-radius: 999px; background: var(--white); box-shadow: 0 4px 18px rgba(20, 18, 20, .14);
 }
-.results__end { font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--ink); }
 .results__range { flex: 1; min-width: 0; height: 2rem; margin: 0; background: transparent; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
 .results__range::-webkit-slider-runnable-track { height: 6px; border-radius: 999px; background: linear-gradient(to right, var(--red) var(--fill, 50%), #e6dcdc var(--fill, 50%)); }
 .results__range::-moz-range-track { height: 6px; border-radius: 999px; background: #e6dcdc; }

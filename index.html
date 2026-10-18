@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1792300286">
+  <link rel="stylesheet" href="styles.css?v=1792300445">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
 </head>
 <body>
@@ -244,12 +244,10 @@
       <div class="container results" id="results">
         <div class="section-head section-head--center" data-reveal>
           <h3 id="results-title" class="results__title">Before &amp; after</h3>
-          <p>Slide the bar to see every before and after at once.</p>
+          <p>Slide the bar and the line on every photo moves with it.</p>
         </div>
         <div class="results__control" data-reveal>
-          <span class="results__end" aria-hidden="true">Before</span>
-          <input class="results__range" type="range" min="0" max="100" value="50" step="1" aria-label="Before and after. Slide left to show more of the before photos, right to show more of the after photos." data-compare-range>
-          <span class="results__end" aria-hidden="true">After</span>
+          <input class="results__range" type="range" min="0" max="100" value="50" step="1" aria-label="Before and after. Slide right to show more of the before photos, left to show more of the after photos." data-compare-range>
         </div>
         <div class="results__grid">
           <figure class="compare" data-reveal data-compare>
@@ -351,14 +349,13 @@
               <img src="assets/img/owner-portrait.webp" width="632" height="760" loading="lazy" alt="The salon's owner, smiling in sunglasses and a black turtleneck, with a chic bob cut.">
             </div>
             <h3 class="person__name">Owner</h3>
-            <p class="person__role">Owner &amp; stylist</p>
           </li>
           <li class="person" data-reveal>
             <div class="person__photo">
               <img src="assets/img/tessie-ablazo.webp" width="466" height="560" loading="lazy" alt="Tessie Ablazo, smiling with her arms crossed, wearing black.">
             </div>
             <h3 class="person__name">Tessie Ablazo</h3>
-            <p class="person__role">Hair &amp; color specialist</p>
+            <p class="person__role">Stylist</p>
           </li>
           <li class="person" data-reveal>
             <div class="person__photo">
@@ -372,7 +369,6 @@
               <svg class="love" aria-hidden="true"><use href="#love-logo"/></svg>
             </div>
             <h3 class="person__name">Stylist</h3>
-            <p class="person__role">Stylist</p>
             <p class="person__note">Photo coming soon</p>
           </li>
         </ul>
@@ -558,6 +554,6 @@
     </a>
   </div>
 
-  <script src="script.js?v=1792300286" defer></script>
+  <script src="script.js?v=1792300445" defer></script>
 </body>
 </html>

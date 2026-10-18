@@ -65,9 +65,9 @@
     var compares = document.querySelectorAll('[data-compare]');
     var header = document.querySelector('.site-header');
     var setCompare = function () {
-      // Toward "Before" shows more of the before photo, toward "After" more of the after
-      var pos = (100 - compareRange.value) + '%';
-      compareRange.style.setProperty('--fill', compareRange.value + '%');
+      // The line on each photo follows the slider
+      var pos = compareRange.value + '%';
+      compareRange.style.setProperty('--fill', pos);
       compares.forEach(function (fig) { fig.style.setProperty('--pos', pos); });
     };
     var setHeaderH = function () {
