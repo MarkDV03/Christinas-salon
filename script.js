@@ -186,12 +186,10 @@
         l.addEventListener('animationend', function () { l.classList.remove('is-replay'); });
       });
 
-      // Logos in the page draw in when they scroll into view, and again every time they come back
+      // Logos in the page draw in once, when they first scroll into view
       var loveObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          var l = en.target._love;
-          if (!en.isIntersecting) return;
-          if (l.classList.contains('is-drawn')) redraw(l); else l.classList.add('is-drawn');
+          if (en.isIntersecting) { en.target._love.classList.add('is-drawn'); loveObs.unobserve(en.target); }
         });
       }, { threshold: 0.2 });
       // Watch the logo's parent: the hidden (clipped) logo itself never counts as visible
