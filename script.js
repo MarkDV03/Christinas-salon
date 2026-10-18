@@ -156,7 +156,7 @@
         firstBad.focus();
         return;
       }
-      status.textContent = 'Preview only: this form isn’t connected yet. Please call (408) 907-6648 to book.';
+      status.textContent = 'Preview only: this form isn’t connected yet. Please call (408) 550-4392 to book.';
     });
   }
 

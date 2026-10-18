@@ -133,10 +133,10 @@ figure { margin: 0; }
 }
 .brand--footer { color: var(--red-bright); margin: 0 0 .5rem; }
 .brand--header { grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: .6rem; align-items: center; }
-.brand--header .love--header { grid-row: 1 / 3; width: 84px; height: 60px; }
+.brand--header .love--header { grid-row: 1 / 3; width: 62px; height: 62px; }
 .brand--header .brand__name, .brand--header .brand__sub { grid-column: 2; }
 @media (max-width: 420px) {
-  .brand--header .love--header { width: 64px; height: 46px; }
+  .brand--header .love--header { width: 50px; height: 50px; }
   .brand--header .brand__name { font-size: 1.7rem; }
 }
 .brand--footer .brand__name { font-size: 2.6rem; }
@@ -173,17 +173,18 @@ figure { margin: 0; }
 
 /* "Love is in the Hair!" logo: the heart draws itself in */
 .love { display: block; color: var(--red); overflow: visible; --draw: 0; }
-.love-word { font-family: var(--font-love); font-size: 64px; fill: currentColor; }
-.love-small { font-family: var(--font-love); font-size: 22px; fill: currentColor; }
+.love-word { font-family: var(--font-love); font-size: 176px; fill: currentColor; }
+.love-word--hair { font-size: 224px; }
+.love-small { font-family: var(--font-love); font-size: 60px; fill: currentColor; }
 .love-heart {
   stroke-dasharray: 1; stroke-dashoffset: var(--draw);
   transition: stroke-dashoffset 2.2s cubic-bezier(.6, .1, .2, 1) .3s;
 }
 .js .love { --draw: 1; }
 .js .love.is-drawn { --draw: 0; }
-.love--hero { width: min(17rem, 70%); height: auto; aspect-ratio: 320 / 230; color: var(--red-bright); margin: 1.25rem 0 .5rem; }
-.love--about { width: min(16rem, 75%); aspect-ratio: 320 / 230; margin-bottom: 1.25rem; }
-.love--footer { width: 11rem; aspect-ratio: 320 / 230; color: var(--red-bright); margin-top: 1rem; }
+.love--hero { width: min(13rem, 55%); height: auto; aspect-ratio: 840 / 830; color: var(--red-bright); margin: 1.25rem 0 .5rem; }
+.love--about { width: min(12rem, 60%); aspect-ratio: 840 / 830; margin-bottom: 1.25rem; }
+.love--footer { width: 8rem; aspect-ratio: 840 / 830; color: var(--red-bright); margin-top: 1rem; }
 
 /* Hero: dark like the wall sign */
 .hero {
@@ -510,3 +511,37 @@ figure { margin: 0; }
   .js [data-reveal] { opacity: 1; transform: none; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Team */
+.team { background: var(--blush); }
+.team__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
+.person { text-align: center; }
+.person__photo {
+  position: relative; aspect-ratio: 466 / 560; border-radius: 1.25rem; overflow: hidden;
+  background: var(--red); box-shadow: 0 18px 40px -22px rgba(158, 12, 36, .55);
+}
+.person__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transition: transform .6s ease; }
+.person:hover .person__photo img { transform: scale(1.04); }
+.person__photo--soon {
+  display: grid; place-items: center;
+  background: radial-gradient(90% 70% at 50% 30%, var(--red), var(--red-deep));
+}
+.person__photo--soon .love { width: 58%; aspect-ratio: 840 / 830; color: rgba(255, 255, 255, .9); --draw: 0; }
+.person__name { margin-top: 1rem; font-size: 1.35rem; }
+.person__role { color: var(--red); font-weight: 600; margin-top: .2rem; }
+.person__note { color: var(--muted); font-size: .9rem; margin-top: .15rem; }
+@media (min-width: 900px) {
+  .team__grid { grid-template-columns: repeat(4, 1fr); gap: 1.75rem; }
+}
+
+/* Ways to pay */
+.pay { margin-top: .85rem; }
+.pay__list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.pay__list li {
+  padding: .45rem .85rem; border-radius: 999px; background: var(--blush); border: 1px solid var(--line);
+  font-weight: 600; font-size: .95rem;
+}
+.pay__list small { display: block; font-weight: 500; color: var(--muted); font-size: .8rem; }
+.pay__no { margin-top: .75rem; color: var(--muted); font-size: .95rem; }
+.pay__no b { color: var(--red); }
+.visit__small--phone { margin-top: 1.25rem; font-weight: 600; color: var(--ink); }
