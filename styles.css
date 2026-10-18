@@ -561,3 +561,27 @@ figure { margin: 0; }
   position: absolute; top: .6rem; right: .6rem; width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%;
   background: rgba(20, 18, 20, .7); color: var(--white); font-size: 1.8rem; line-height: 1; cursor: pointer;
 }
+
+/* Wall tile link in the collage */
+.work__wall-link { position: relative; display: block; width: 100%; height: 100%; border-radius: .6rem; overflow: hidden; box-shadow: 0 22px 44px -26px rgba(158, 12, 36, .55); }
+.work__wall-link img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+.work__wall-link:hover img, .work__wall-link:focus-visible img { transform: scale(1.03); }
+.work__wall-link:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+.work__wall-label {
+  position: absolute; left: 50%; bottom: 1rem; transform: translateX(-50%); white-space: nowrap;
+  padding: .7rem 1.2rem; border-radius: 999px; background: var(--red); color: var(--white);
+  font-weight: 700; font-size: .95rem; box-shadow: 0 10px 24px -10px rgba(20, 18, 20, .6);
+}
+@media (min-width: 700px) { .work__wall-link { border-radius: .9rem; } .work__wall-label { font-size: 1.05rem; bottom: 1.5rem; } }
+
+/* Free haircut fine print */
+.offer__fine { display: block; margin-top: .35rem; font-size: .85rem; opacity: .9; }
+
+/* Happy clients page */
+.wall-page__section { padding-top: 2rem; }
+.wall-page__back { display: inline-block; margin-bottom: 1.5rem; }
+.wall-page__title { font-family: var(--font-head); text-transform: uppercase; letter-spacing: .01em; font-size: clamp(2.2rem, 6vw, 3.6rem); }
+.wall-page__figure { margin: 0 auto; max-width: 80rem; }
+.wall-page__figure img { width: 100%; height: auto; display: block; border-radius: 1rem; box-shadow: 0 30px 60px -30px rgba(158, 12, 36, .5); }
+.wall-page__figure figcaption { text-align: center; color: var(--muted); font-size: .9rem; margin-top: .8rem; }
+.wall-page__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 2rem; }
