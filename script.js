@@ -178,12 +178,17 @@
     if (instant) {
       loves.forEach(function (l) { l.classList.add('is-drawn'); });
     } else {
-      var redraw = function (l) {
+      // up: draw the heart backwards, from the bottom tip to the top
+      var redraw = function (l, up) {
         if (l.classList.contains('is-replay')) return;
+        l.classList.toggle('is-up', !!up);
         l.classList.add('is-replay');
       };
       loves.forEach(function (l) {
-        l.addEventListener('animationend', function (e) { if (e.target.classList.contains('love__pen--b')) l.classList.remove('is-replay'); });
+        l.addEventListener('animationend', function (e) {
+          var lastPen = l.classList.contains('is-up') ? 'love__pen--a' : 'love__pen--b';
+          if (e.target.classList.contains(lastPen)) l.classList.remove('is-replay', 'is-up');
+        });
       });
 
       // Logos in the page draw in once, when they first scroll into view
@@ -198,21 +203,28 @@
         l.parentElement._love = l; loveObs.observe(l.parentElement);
       });
 
-      // Header logo: redraws as each new section scrolls into view, on hover, and every 7 seconds when idle
+      // Header logo: redraws as each new section scrolls into view (bottom to top when scrolling up),
+      // on hover, and every 7 seconds when idle
       var headerLove = document.querySelector('.love--header');
       if (headerLove) {
         requestAnimationFrame(function () { requestAnimationFrame(function () { headerLove.classList.add('is-drawn'); }); });
         var lastDraw = Date.now();
-        var replay = function () {
+        var lastY = window.scrollY, goingUp = false;
+        window.addEventListener('scroll', function () {
+          var y = window.scrollY;
+          if (y !== lastY) goingUp = y < lastY;
+          lastY = y;
+        }, { passive: true });
+        var replay = function (up) {
           if (document.hidden || Date.now() - lastDraw < 1800) return;
           lastDraw = Date.now();
-          redraw(headerLove);
+          redraw(headerLove, up === true);
         };
         var sectionObs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) { if (en.isIntersecting && window.scrollY > 50) replay(); });
+          entries.forEach(function (en) { if (en.isIntersecting && (goingUp || window.scrollY > 50)) replay(goingUp); });
         }, { rootMargin: '-45% 0px -45% 0px' });
         document.querySelectorAll('main > section').forEach(function (s) { sectionObs.observe(s); });
-        headerLove.parentElement.addEventListener('mouseenter', replay);
+        headerLove.parentElement.addEventListener('mouseenter', function () { replay(); });
         setInterval(function () { if (Date.now() - lastDraw > 6500) replay(); }, 1000);
       }
     }

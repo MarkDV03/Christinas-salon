@@ -184,6 +184,10 @@ figure { margin: 0; }
 .js .love.is-replay .love__pen--a { animation: love-pen .6s cubic-bezier(.5,0,.5,1) both; }
 .js .love.is-replay .love__pen--b { animation: love-pen 1.4s cubic-bezier(.4,0,.3,1) .5s both; }
 @keyframes love-pen { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+/* Scrolling up: the big sweep draws from the tip up, then the small curve */
+.js .love.is-replay.is-up .love__pen--b { animation: love-pen-up 1.4s cubic-bezier(.4,0,.3,1) both; }
+.js .love.is-replay.is-up .love__pen--a { animation: love-pen-up .6s cubic-bezier(.5,0,.5,1) 1.2s both; }
+@keyframes love-pen-up { from { stroke-dashoffset: -1; } to { stroke-dashoffset: 0; } }
 .love--hero { width: min(13rem, 55%); height: auto; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin: 1.25rem 0 .5rem; }
 .love--about { width: min(12rem, 60%); aspect-ratio: 1036 / 1034; margin-bottom: 1.25rem; }
 .love--footer { width: 8rem; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin-top: 1rem; }
