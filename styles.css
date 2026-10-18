@@ -551,7 +551,7 @@ figure { margin: 0; }
 .work__btn img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
 .work__btn:hover img, .work__btn:focus-visible img { transform: scale(1.06); }
 .work__btn:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
-@media (min-width: 700px) { .work__item--feature { grid-column: 3 / span 2; } .work__grid { grid-template-columns: repeat(4, 1fr); gap: .6rem; grid-auto-flow: dense; } .work__btn { border-radius: .9rem; } }
+@media (min-width: 700px) { .work__item--feature { grid-column: 2 / span 2; } .work__grid { grid-template-columns: repeat(3, 1fr); gap: .6rem; grid-auto-flow: dense; } .work__btn { border-radius: .9rem; } }
 .lightbox {
   max-width: min(92vw, 46rem); max-height: 92vh; padding: 0; border: 0; border-radius: 1rem;
   background: var(--ink); color: var(--white); overflow: hidden;
