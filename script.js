@@ -183,7 +183,7 @@
         l.classList.add('is-replay');
       };
       loves.forEach(function (l) {
-        l.addEventListener('animationend', function () { l.classList.remove('is-replay'); });
+        l.addEventListener('animationend', function (e) { if (e.target.classList.contains('love__pen--b')) l.classList.remove('is-replay'); });
       });
 
       // Logos in the page draw in once, when they first scroll into view

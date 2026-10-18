@@ -173,12 +173,17 @@ figure { margin: 0; }
 .site-nav .btn { width: 100%; }
 
 /* "Love is in the Hair!" logo: the heart draws itself in */
-.love { display: block; color: var(--red); overflow: visible; }
-.js .love { clip-path: inset(0 100% 0 0); transition: clip-path 1.6s cubic-bezier(.6,.1,.2,1) .2s; }
-.js .love.is-drawn, .person__photo--soon .love { clip-path: none; }
-/* Header logo redraws itself every few seconds and on hover */
-.js .love.is-replay { animation: love-redraw 1.6s cubic-bezier(.6,.1,.2,1); }
-@keyframes love-redraw { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
+.love { display: block; color: var(--red); overflow: visible; fill: currentColor; }
+/* Only the heart animates: a thick pen stroke inside a mask traces it, left curve first, then the big sweep down */
+.love__pen { fill: none; stroke: #fff; stroke-width: 115; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+.js .love .love__pen { stroke-dashoffset: 1; }
+.js .love .love__pen--a { transition: stroke-dashoffset .6s cubic-bezier(.5,0,.5,1) .2s; }
+.js .love .love__pen--b { transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.3,1) .7s; }
+.js .love.is-drawn .love__pen, .person__photo--soon .love .love__pen { stroke-dashoffset: 0; }
+/* Header logo redraws its heart as you scroll into each section */
+.js .love.is-replay .love__pen--a { animation: love-pen .6s cubic-bezier(.5,0,.5,1) both; }
+.js .love.is-replay .love__pen--b { animation: love-pen 1.4s cubic-bezier(.4,0,.3,1) .5s both; }
+@keyframes love-pen { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 .love--hero { width: min(13rem, 55%); height: auto; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin: 1.25rem 0 .5rem; }
 .love--about { width: min(12rem, 60%); aspect-ratio: 1036 / 1034; margin-bottom: 1.25rem; }
 .love--footer { width: 8rem; aspect-ratio: 1036 / 1034; color: var(--red-bright); margin-top: 1rem; }
@@ -545,7 +550,7 @@ figure { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ribbon__track { animation: none !important; }
-  .js .love { clip-path: none; }
+  .js .love .love__pen { stroke-dashoffset: 0; }
   .js [data-reveal] { opacity: 1; transform: none; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
