@@ -122,6 +122,15 @@
     counters.forEach(function (el) { countIo.observe(el); });
   }
 
+  // Hero walk-in video plays once; with reduced motion, show the inside view as a still
+  var heroVideo = document.querySelector('[data-hero-video]');
+  if (heroVideo && reduceMotion) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+    heroVideo.poster = heroVideo.getAttribute('data-end-poster');
+    heroVideo.preload = 'none';
+  }
+
   // Pause looping animations when they're offscreen or the tab is hidden
   var loops = document.querySelectorAll('[data-loop]');
   if ('IntersectionObserver' in window) {

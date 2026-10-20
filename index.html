@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/img/owner-portrait-lg.webp" imagesrcset="assets/img/owner-portrait.webp 632w, assets/img/owner-portrait-lg.webp 1580w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/hero-walkin-start.webp">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap"></noscript>
@@ -73,15 +73,17 @@
   </header>
 
   <main id="main">
-    <!-- Hero: modeled on the salon's wall sign -->
-    <section class="hero" id="top" data-loop>
-      <figure class="hero__photo">
-        <img src="assets/img/owner-portrait-lg.webp" srcset="assets/img/owner-portrait.webp 632w, assets/img/owner-portrait-lg.webp 1580w" sizes="(min-width: 900px) 50vw, 100vw" width="1580" height="1900" alt="Ina Austria Ramos, the salon's owner, smiling in sunglasses and a black turtleneck, with a chic bob cut." fetchpriority="high">
-      </figure>
+    <!-- Hero: a walk from the mall hallway into the salon -->
+    <section class="hero hero--video" id="top">
+      <div class="hero__media">
+        <video class="hero__video" autoplay muted playsinline preload="auto" poster="assets/img/hero-walkin-start.webp" aria-hidden="true" data-hero-video data-end-poster="assets/img/hero-walkin-end.webp">
+          <source src="assets/video/hero-walkin.mp4" type="video/mp4">
+          <source src="assets/video/hero-walkin.webm" type="video/webm">
+        </video>
+      </div>
       <div class="hero__copy">
         <p class="hero__brand"><span class="hero__script">Christina's</span> <span class="hero__brand-sub">Hair Salon</span></p>
         <h1 class="hero__title">House of Keratin &amp; Rebonding</h1>
-        <svg class="love love--hero" viewBox="0 0 1036 1034" role="img" aria-label="Love is in the Hair!"><mask id="love-m-hero" maskUnits="userSpaceOnUse" x="0" y="0" width="1036" height="1034"><path class="love__pen love__pen--a" pathLength="1" d="M311 293C330 150 500 130 560 250C580 300 590 360 590 405"/><path class="love__pen love__pen--b" pathLength="1" d="M560 250C650 80 800 20 900 40C990 55 1040 130 1036 225C1030 330 980 430 898 518C820 600 700 730 639 812C590 880 570 950 587 1036"/></mask><use href="#love-text"/><use href="#love-heart" mask="url(#love-m-hero)"/></svg>
         <p class="hero__lede">Haircuts, color, highlights, perms, rebonding and keratin for women, men and boys. Walk-ins welcome, and appointments are served first. Inside Seafood City Milpitas.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="tel:+14085504392">Call (408) 550-4392</a>
@@ -332,7 +334,7 @@
             <img src="assets/img/stylist-cutting-hair.webp" width="680" height="510" loading="lazy" alt="A stylist at Christina's sections a client's hair with a comb before cutting it.">
           </figure>
           <figure class="about__photo about__photo--small">
-            <img src="assets/img/salon-interior.webp" width="680" height="510" loading="lazy" alt="Inside the salon: styling chairs facing wood mirror stations, hood dryers and a shampoo chair.">
+            <img src="assets/img/owner-portrait.webp" width="632" height="760" loading="lazy" alt="Ina Austria Ramos, the salon's owner, smiling in sunglasses and a black turtleneck, with a chic bob cut.">
           </figure>
         </div>
       </div>

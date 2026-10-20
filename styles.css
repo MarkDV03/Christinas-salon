@@ -219,6 +219,17 @@ figure { margin: 0; }
 .hero__lede { max-width: 32rem; color: #ddd6de; font-size: clamp(1.0625rem, 2vw, 1.125rem); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
+/* Video hero: a walk from the hallway into the salon, copy anchored bottom-left */
+.hero--video { min-height: calc(100svh - var(--header-h, 72px) - 7.5rem); align-content: end; }
+.hero__media { position: absolute; inset: 0; }
+.hero__video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.hero__media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(20, 18, 20, .92) 0%, rgba(20, 18, 20, .55) 38%, rgba(20, 18, 20, .08) 72%);
+}
+.hero--video .hero__copy { margin-top: 0; padding-top: 10rem; }
+.hero--video .hero__title { text-shadow: 0 2px 18px rgba(0, 0, 0, .45); }
+
 /* Free haircut offer */
 .offer { background: var(--red); color: var(--white); }
 .offer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; }
@@ -398,6 +409,7 @@ figure { margin: 0; }
 .about__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
 .about__photo:hover img { transform: scale(1.04); }
 .about__photo--main { width: 88%; }
+.about__photo--small img { object-position: 50% 18%; }
 .about__photo--small {
   position: absolute; right: 0; bottom: 0; width: 52%;
   border: 6px solid var(--white); box-shadow: 0 20px 40px -24px rgba(0,0,0,.5);
@@ -537,6 +549,17 @@ figure { margin: 0; }
   .hero__copy {
     display: flex; flex-direction: column; justify-content: center; margin-top: 0;
     padding: 4rem max(var(--gutter), calc((100vw - 72rem) / 2)) 4rem 3rem;
+  }
+  .hero--video { grid-template-columns: 1fr; min-height: calc(100svh - var(--header-h, 72px) - 2.25rem); }
+  .hero--video .hero__video { object-position: 50% 45%; }
+  .hero--video .hero__media::after {
+    background:
+      linear-gradient(90deg, rgba(20, 18, 20, .78) 0%, rgba(20, 18, 20, .35) 42%, transparent 70%),
+      linear-gradient(0deg, rgba(20, 18, 20, .7) 0%, transparent 45%);
+  }
+  .hero--video .hero__copy {
+    justify-content: flex-end; max-width: 46rem;
+    padding: 8rem 0 4.5rem max(var(--gutter), calc((100vw - 72rem) / 2));
   }
 
   .prices { grid-template-columns: 2fr 1fr; align-items: stretch; }
