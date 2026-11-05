@@ -2,7 +2,7 @@
 
 Website for Christina's Hair Salon (Hair Couture), Milpitas, CA. Plain HTML, CSS and JS with no build step.
 
-Live preview: https://markdv03.github.io/Christinas-salon/ (GitHub Pages, deploys on every push to `main`).
+Live site: https://christinashairsalonmilpitas.com (GitHub Pages with a custom domain, deploys on every push to `main`). The old https://markdv03.github.io/Christinas-salon/ link forwards here. Never delete the `CNAME` file.
 
 ## Files
 
