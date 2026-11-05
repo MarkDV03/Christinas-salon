@@ -25,7 +25,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Kaushan+Script&family=Oswald:wght@500;600;700&family=Yellowtail&display=swap"></noscript>
-  <link rel="stylesheet" href="styles.css?v=1792632164">
+  <link rel="stylesheet" href="styles.css?v=1793838071">
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
 </head>
 <body>
@@ -452,7 +452,7 @@
       </div>
     </section>
 
-    <!-- Request form (design only) -->
+    <!-- Request form: sent by Web3Forms to the salon's email -->
     <section class="section request" id="request" aria-labelledby="request-title">
       <div class="container request__inner">
         <header class="section-head" data-reveal>
@@ -460,7 +460,12 @@
           <h2 id="request-title">Request an appointment</h2>
           <p>Send us your preferred time and we'll call you back to confirm. For same-day visits, just call or walk in.</p>
         </header>
-        <form class="form" data-reveal data-request-form novalidate>
+        <form class="form" action="https://api.web3forms.com/submit" method="POST" data-reveal data-request-form novalidate>
+          <input type="hidden" name="access_key" value="f1608f61-a643-420e-b08d-3b9f71fe461c">
+          <input type="hidden" name="subject" value="New appointment request from the website">
+          <input type="hidden" name="from_name" value="Christina's Hair Salon website">
+          <input type="hidden" name="redirect" value="https://christinashairsalonmilpitas.com/#request">
+          <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="name">Your name <span aria-hidden="true">*</span></label>
             <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-error">
@@ -502,6 +507,7 @@
           <div class="field--full form__foot">
             <button class="btn btn--primary" type="submit">Send request</button>
             <p class="form__status" role="status" aria-live="polite" data-form-status></p>
+            <p class="form__note">We only use your name and number to call you back about your visit. <a href="privacy.html">Privacy policy</a></p>
           </div>
         </form>
       </div>
@@ -548,6 +554,6 @@
     </a>
   </div>
 
-  <script src="script.js?v=1792632164" defer></script>
+  <script src="script.js?v=1793838071" defer></script>
 </body>
 </html>
